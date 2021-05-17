@@ -15,4 +15,5 @@ storiesOf("MenuLower", module)
 
 storiesOf("Login", module)
   .add("Empty", ()  => <Login  />)
+  .add("Populated", ()  => <Login values={{email: "john@dough.com", password: "123"}} />)
   

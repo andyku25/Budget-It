@@ -13,8 +13,8 @@ const TopNav = () => {
         <Toolbar>
           <IconButton>
             <Menu />
-
           </IconButton>
+          <h1>Budget-It</h1>
         </Toolbar>
       </AppBar>
     </>
