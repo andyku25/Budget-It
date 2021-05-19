@@ -6,8 +6,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { makeStyles } from "@material-ui/styles";
 
+import NavLeft from "./NavLeft";
 import NavRight from "./NavRight"
 import "./styles.scss";
+import NavCenter from "./NavCenter";
 
 
 const useStyles = makeStyles({
@@ -58,15 +60,9 @@ const TopNav = () => {
           className={classes.nav}
         >
           <div>
-            <Typography 
-              variant="h3"
-              component="h2"
-              className={classes.rightyy}
-            >
-              Budget-It
-            </Typography>
+            <NavLeft />
           </div>
-
+          <NavCenter />
           <div>
             <NavRight handleClose={handleClose} anchorEl={anchorEl} handleOptionsMenu={handleOptionsMenu} />
           </div>
