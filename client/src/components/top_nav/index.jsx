@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, AppBar, Toolbar, Slide, IconButton, useScrollTrigger, Avatar, Menu, MenuItem, Typography } from "@material-ui/core";
-
-import MenuIcon from '@material-ui/icons/Menu';
+import { Container, AppBar, Toolbar, Slide, IconButton, useScrollTrigger, Avatar, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -24,10 +22,6 @@ const useStyles = makeStyles({
 const TopNav = () => {
   const classes = useStyles();
 
-  const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null)
-
-
   function HideOnScroll({children}) {
     const trigger = useScrollTrigger();
   
@@ -38,19 +32,6 @@ const TopNav = () => {
     );
   }
 
-
-
-  const handleOptionsMenu = (e) => {
-    console.log("options clicked")
-    setAnchorEl(e.currentTarget);
-    // setOptionsMenuOpen(optionsMenuOpen ? false : true);
-    console.log(optionsMenuOpen);
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  }
-
   return (
     <>
     <HideOnScroll>
@@ -59,14 +40,9 @@ const TopNav = () => {
         <Toolbar
           className={classes.nav}
         >
-          <div>
-            <NavLeft />
-          </div>
+          <NavLeft />
           <NavCenter />
-          <div>
-            <NavRight handleClose={handleClose} anchorEl={anchorEl} handleOptionsMenu={handleOptionsMenu} />
-          </div>
-
+          <NavRight />
         </Toolbar>
       </AppBar>
 

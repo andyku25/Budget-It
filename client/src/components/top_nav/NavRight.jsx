@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Menu, MenuItem, IconButton } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-const NavRight = ({handleClose, anchorEl, handleOptionsMenu}) => {
+const NavRight = () => {
 
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleOptionsMenu = (e) => {
+    console.log("options clicked")
+    setAnchorEl(e.currentTarget);
+    // setOptionsMenuOpen(optionsMenuOpen ? false : true);
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
 
   return (
     <>
@@ -27,9 +38,10 @@ const NavRight = ({handleClose, anchorEl, handleOptionsMenu}) => {
         }}
         keepMounted
         transformOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
+          vertical: "top",
+          horizontal: "right",
         }}
+        getContentAnchorEl={null}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
