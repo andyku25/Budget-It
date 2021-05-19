@@ -1,22 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { AppBar, Toolbar, Slide, IconButton } from "@material-ui/core";
+import { Container, AppBar, Toolbar, Slide, IconButton, useScrollTrigger, Avatar, Menu, MenuItem, Typography } from "@material-ui/core";
 
-import { Menu } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
 
+import { makeStyles } from "@material-ui/styles";
+
+import NavRight from "./NavRight"
+import "./styles.scss";
+
+
+const useStyles = makeStyles({
+  rightyy: {
+    marginRight: "10px"
+  },
+  nav: {
+    justifyContent: "space-between"
+  }
+})
 
 const TopNav = () => {
+  const classes = useStyles();
+
+  const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null)
+
+
+  function HideOnScroll({children}) {
+    const trigger = useScrollTrigger();
+  
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
+
+
+
+  const handleOptionsMenu = (e) => {
+    console.log("options clicked")
+    setAnchorEl(e.currentTarget);
+    // setOptionsMenuOpen(optionsMenuOpen ? false : true);
+    console.log(optionsMenuOpen);
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
 
   return (
     <>
+    <HideOnScroll>
+
       <AppBar>
-        <Toolbar>
-          <IconButton>
-            <Menu />
-          </IconButton>
-          <h1>Budget-It</h1>
+        <Toolbar
+          className={classes.nav}
+        >
+          <div>
+            <Typography 
+              variant="h3"
+              component="h2"
+              className={classes.rightyy}
+            >
+              Budget-It
+            </Typography>
+          </div>
+
+          <div>
+            <NavRight handleClose={handleClose} anchorEl={anchorEl} handleOptionsMenu={handleOptionsMenu} />
+          </div>
+
         </Toolbar>
       </AppBar>
+
+    </HideOnScroll>
     </>
   )
 }
