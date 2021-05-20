@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 })
 
-const TopNav = () => {
+const TopNav = ({ isLoggedIn }) => {
   const classes = useStyles();
 
   function HideOnScroll({children}) {
@@ -42,7 +42,7 @@ const TopNav = () => {
         >
           <NavLeft />
           <NavCenter />
-          <NavRight />
+          <NavRight isLoggedIn={isLoggedIn} />
         </Toolbar>
       </AppBar>
 

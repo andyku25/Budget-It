@@ -1,5 +1,7 @@
 import './App.css';
 
+import { useState } from "react"
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
@@ -18,13 +20,15 @@ const theme = createMuiTheme({
 })
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
       <Router>
         <Switch>
           <TopNav />
-          <Route path="/login" exact component={() => <Login />} />
+          <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} />} />
 
           <Route path="/" exact component={() => <Home />} />
           <MenuLower />

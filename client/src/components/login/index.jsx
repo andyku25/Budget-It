@@ -1,7 +1,5 @@
 import React from "react"
 
-import { TextField, Button } from "@material-ui/core";
-
 import LoginForm from "./LoginForm";
 import "./styles.scss";
 
