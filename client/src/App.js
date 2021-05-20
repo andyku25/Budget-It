@@ -25,15 +25,15 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-      <Router>
-        <Switch>
-          <TopNav />
-          <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} />} />
+        <Router>
+          <Switch>
+            <TopNav />
+            <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
-          <Route path="/" exact component={() => <Home />} />
-          <MenuLower />
-        </Switch>
-      </Router>
+            <Route path="/" exact component={() => <Home />} />
+            <MenuLower />
+          </Switch>
+        </Router>
       </ThemeProvider>
 
 

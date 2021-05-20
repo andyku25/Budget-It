@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Menu, MenuItem, IconButton, Button } from "@material-ui/core";
+import { Menu, MenuItem, IconButton, Button, Avatar } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   navRight: {
     width: "33%",
-    textAlign: "right"
-  }
+    textAlign: "right",
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+
 })
 
-const NavRight = ({ isLoggedIn }) => {
+const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const classes = useStyles();
@@ -28,14 +31,17 @@ const NavRight = ({ isLoggedIn }) => {
 
 
   const navRightRender = isLoggedIn ? (
-    <Button
-      component={ Link }
-      to="/login"
-      variant="contained"
-      color="secondary"
-    >
-      Logout
-    </Button>
+    <>
+      <Avatar alt="username">AK</Avatar>
+      <Button
+        component={ Link }
+        to="/login"
+        variant="contained"
+        color="secondary"
+      >
+        Logout
+      </Button>
+    </>
   ) : (
     <>
       <Button
@@ -84,7 +90,19 @@ const NavRight = ({ isLoggedIn }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClose={handleClose} >
+        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+          <Avatar alt="username">AK</Avatar>
+        </MenuItem>
+        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+          Calculate
+        </MenuItem>
+        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+          About
+        </MenuItem>
+        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+          Learn
+        </MenuItem>
+        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
           Logout
         </MenuItem>
       </Menu>
@@ -133,7 +151,6 @@ const NavRight = ({ isLoggedIn }) => {
         </MenuItem>
       </Menu>
     </>
-
   )
 
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, AppBar, Toolbar, Slide, IconButton, useScrollTrigger, Avatar, Typography } from "@material-ui/core";
+import { Container, AppBar, Toolbar, Slide, IconButton, useScrollTrigger, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 })
 
-const TopNav = ({ isLoggedIn }) => {
+const TopNav = ({ isLoggedIn, setIsLoggedIn }) => {
   const classes = useStyles();
 
   function HideOnScroll({children}) {
@@ -42,7 +42,7 @@ const TopNav = ({ isLoggedIn }) => {
         >
           <NavLeft />
           <NavCenter />
-          <NavRight isLoggedIn={isLoggedIn} />
+          <NavRight isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Toolbar>
       </AppBar>
 
