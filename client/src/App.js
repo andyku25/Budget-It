@@ -26,13 +26,13 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Switch>
             <TopNav />
+          <Switch>
             <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
 
             <Route path="/" exact component={() => <Home />} />
-            <MenuLower />
           </Switch>
+            {/* <MenuLower /> */}
         </Router>
       </ThemeProvider>
 
