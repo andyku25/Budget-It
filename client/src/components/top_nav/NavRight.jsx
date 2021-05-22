@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-import { Menu, MenuItem, IconButton, Button, Avatar, Hidden } from "@material-ui/core";
+import { Menu, MenuItem, IconButton, Button, Avatar, Hidden, Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 
@@ -15,23 +17,45 @@ const useStyles = makeStyles(theme => ({
       width: "25%"
     }
   },
+  mobileDrawer: {
+    height: "100%",
+    width: "100%",
+    textAlign: "center",
+  }
 
 }))
 
 const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const classes = useStyles();
 
   const handleOptionsMenu = (e) => {
-    console.log("options clicked")
-    setAnchorEl(e.currentTarget);
+    console.log("options clicked");
+    !drawerOpen ? setDrawerOpen(true) : setDrawerOpen(false);
+    // setAnchorEl(e.currentTarget);
+    console.log(drawerOpen);
   }
 
   const handleClose = () => {
     setAnchorEl(null);
   }
 
+  const drawerNav = (
+    <>
+      <List>
+          {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
+            <ListItem key={index} >
+              <ListItemText>
+                {text}
+              </ListItemText>
+            </ListItem>
+
+          ))}
+      </List>
+    </>
+  )
 
   const navRightRender = isLoggedIn ? (
     <>
@@ -76,7 +100,18 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
       >
         <MenuIcon />
       </IconButton>
-      <Menu 
+      <Drawer
+        id="options-appbar"
+        anchor="top"
+        open={drawerOpen}
+      >
+        {/* <IconButton>
+          <CloseIcon/>
+        </IconButton> */}
+        {drawerNav}
+      </Drawer>
+
+      {/* <Menu 
         id="options-appbar"
         elevation={0}
         anchorEl={anchorEl}
@@ -108,7 +143,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
           Logout
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </>
   ) : (
     <>
@@ -120,7 +155,20 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
       >
         <MenuIcon />
       </IconButton>
-      <Menu 
+      <Drawer
+        id="options-appbar"
+        anchor="top"
+        open={drawerOpen}
+      >
+        <IconButton 
+          onClick={handleOptionsMenu}
+        >
+          <CloseIcon/>
+        </IconButton>
+        {drawerNav}
+      </Drawer>
+
+      {/* <Menu 
         id="options-appbar"
         elevation={0}
         anchorEl={anchorEl}
@@ -152,7 +200,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         <MenuItem onClose={handleClose} >
           Sign Up
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </>
   )
 
