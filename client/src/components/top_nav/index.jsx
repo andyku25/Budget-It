@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppBar, Toolbar, Slide, useScrollTrigger } from "@material-ui/core";
+import { AppBar, Toolbar, Slide, useScrollTrigger, Hidden } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -41,7 +41,10 @@ const TopNav = ({ isLoggedIn, setIsLoggedIn }) => {
           className={classes.nav}
         >
           <NavLeft />
-          <NavCenter />
+          <Hidden smDown >
+            <NavCenter />
+
+          </Hidden>
           <NavRight isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Toolbar>
       </AppBar>

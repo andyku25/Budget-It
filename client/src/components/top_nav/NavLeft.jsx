@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/styles";
 
 import { Link } from "react-router-dom"
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   navLeft: {
     width: "33%",
-    textAlign: "left"
+    textAlign: "left",
+    [theme.breakpoints.down("sm")]: {
+      width: "75%"
+    }
   }
-})
+}))
 
 const NavLeft = () => {
 

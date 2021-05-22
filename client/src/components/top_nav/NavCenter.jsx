@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 

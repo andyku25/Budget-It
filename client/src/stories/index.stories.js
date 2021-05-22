@@ -1,7 +1,7 @@
 import React from "react";
 
 import { storiesOf, addDecorator } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
+// import { action } from "@storybook/addon-actions";
 
 import TopNav from "../components/top_nav";
 import MenuLower from "../components/menu_lower";

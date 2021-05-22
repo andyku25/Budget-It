@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
-import { Menu, MenuItem, IconButton, Button, Avatar } from "@material-ui/core";
+import { Menu, MenuItem, IconButton, Button, Avatar, Hidden } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   navRight: {
     width: "33%",
     textAlign: "right",
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      width: "25%"
+    }
   },
 
-})
+}))
 
 const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
 
@@ -90,16 +93,16 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+        <MenuItem onClose={handleClose} >
           <Avatar alt="username">AK</Avatar>
         </MenuItem>
-        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+        <MenuItem onClose={handleClose} >
           Calculate
         </MenuItem>
-        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+        <MenuItem onClose={handleClose} >
           About
         </MenuItem>
-        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
+        <MenuItem onClose={handleClose} >
           Learn
         </MenuItem>
         <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
@@ -156,8 +159,14 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
       <div className={classes.navRight} >
-        {navRightMobileRender}      
-        {navRightRender}
+        <Hidden mdUp >
+          {navRightMobileRender}
+
+        </Hidden>
+        <Hidden smDown >
+          {navRightRender}
+
+        </Hidden>
       </div>
     </>
   )
