@@ -42,17 +42,24 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     setAnchorEl(null);
   }
 
+  // const customLink = ()
+
   const drawerNav = (
     <>
       <List>
-          {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
-            <ListItem key={index} >
-              <ListItemText>
-                {text}
-              </ListItemText>
-            </ListItem>
-
-          ))}
+        <ListItem
+          button
+          onClick={handleOptionsMenu}
+        >
+          <CloseIcon />
+        </ListItem>
+        {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
+          <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} >
+            <ListItemText>
+              {text}
+            </ListItemText>
+          </ListItem>
+        ))}
       </List>
     </>
   )
@@ -105,45 +112,8 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         anchor="top"
         open={drawerOpen}
       >
-        {/* <IconButton>
-          <CloseIcon/>
-        </IconButton> */}
         {drawerNav}
       </Drawer>
-
-      {/* <Menu 
-        id="options-appbar"
-        elevation={0}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        getContentAnchorEl={null}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClose={handleClose} >
-          <Avatar alt="username">AK</Avatar>
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          Calculate
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          About
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          Learn
-        </MenuItem>
-        <MenuItem onClose={handleClose} onClick={() => setIsLoggedIn(false)} >
-          Logout
-        </MenuItem>
-      </Menu> */}
     </>
   ) : (
     <>
@@ -159,48 +129,11 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         id="options-appbar"
         anchor="top"
         open={drawerOpen}
+        onClose={handleOptionsMenu}
       >
-        <IconButton 
-          onClick={handleOptionsMenu}
-        >
-          <CloseIcon/>
-        </IconButton>
         {drawerNav}
       </Drawer>
 
-      {/* <Menu 
-        id="options-appbar"
-        elevation={0}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        getContentAnchorEl={null}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClose={handleClose} >
-          Calculate
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          About
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          Learn
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          Login
-        </MenuItem>
-        <MenuItem onClose={handleClose} >
-          Sign Up
-        </MenuItem>
-      </Menu> */}
     </>
   )
 
