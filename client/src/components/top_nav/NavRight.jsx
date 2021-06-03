@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
 
-  const [anchorEl, setAnchorEl] = useState(null)
+  // const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false);
   const classes = useStyles();
 
@@ -38,9 +38,9 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     console.log(drawerOpen);
   }
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  }
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // }
 
   // const customLink = ()
 
