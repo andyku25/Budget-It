@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     width: "100%",
     textAlign: "center",
+  },
+  mobileDrawerClose: {
+    justifyContent: "flex-end"
   }
 
 }))
@@ -42,19 +45,22 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
   //   setAnchorEl(null);
   // }
 
-  // const customLink = ()
 
   const drawerNav = (
     <>
       <List>
-        <ListItem
-          button
+        <ListItem 
+          className={classes.mobileDrawerClose}
+        >
+        <IconButton
           onClick={handleOptionsMenu}
         >
           <CloseIcon />
+        </IconButton>
+
         </ListItem>
         {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
-          <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} >
+          <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
             <ListItemText>
               {text}
             </ListItemText>
