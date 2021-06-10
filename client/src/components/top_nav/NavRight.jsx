@@ -59,7 +59,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         </IconButton>
 
         </ListItem>
-        {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
+        {["Calculate", "About", "Learn", "Login", "SignUp"].map((text, index) => (
           <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
             <ListItemText>
               {text}

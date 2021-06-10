@@ -11,6 +11,7 @@ import Home from "./components/home"
 import TopNav from "./components/top_nav"
 import MenuLower from "./components/menu_lower"
 import Login from "./components/login"
+import Signup from "./components/signup"
 
 const theme = createMuiTheme({
   palette: {
@@ -40,6 +41,7 @@ function App() {
             <TopNav />
           <Switch>
             <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/signup" exact component={() => <Signup />} />
 
             <Route path="/" exact component={() => <Home />} />
           </Switch>
