@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { TextField, Button } from "@material-ui/core";
@@ -12,6 +12,16 @@ const SignupForm = () => {
     password: "",
     password_confirmation: ""
   })
+
+  const resetSignupForm = () => {
+    setNewUser({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      password_confirmation: ""
+    })
+  }
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -29,7 +39,8 @@ const SignupForm = () => {
 
     axios.post("/api/v1/users", newUser)
       .then(() => {
-        console.log("user Created")
+        console.log("user Created");
+        resetSignupForm();
       })
       .catch(err => console.error("User creation error ", err))
   }
