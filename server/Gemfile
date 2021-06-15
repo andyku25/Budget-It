@@ -25,6 +25,22 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Testing Framework
+  gem "rspec-rails"
+end
+
+group :test do
+  # adds more rspec matchers
+  gem "shoulda-matchers"
+
+  # cleans state in each test suite
+  gem "database_cleaner"
+
+  # straight forward syntax
+  gem 'factory_bot_rails'
+
+  # fake data generator
+  gem "faker"
 end
 
 group :development do

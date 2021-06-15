@@ -22,6 +22,7 @@ class Api::V1::UsersController < ApplicationController
     puts @user
 
     if @user.save
+      session[:user_id] = @user.id
       render json: @user, status: :created, location: api_v1_user_url(@user)
     else
       render json: @user.errors, status: :unprocessable_entity
