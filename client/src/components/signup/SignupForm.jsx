@@ -37,9 +37,9 @@ const SignupForm = () => {
     e.preventDefault();
     console.log(e.target);
 
-    axios.post("/api/v1/users", newUser)
-      .then(() => {
-        console.log("user Created");
+    axios.post("/api/v1/users", newUser, { withCredentials: true })
+      .then((res) => {
+        console.log("user Created, response: ", res);
         resetSignupForm();
       })
       .catch(err => console.error("User creation error ", err))
