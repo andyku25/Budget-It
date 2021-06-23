@@ -4,8 +4,9 @@ import axios from "axios";
 import { TextField, Button } from "@material-ui/core"
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
+  const isLoggedIn = props.isLoggedIn;
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
