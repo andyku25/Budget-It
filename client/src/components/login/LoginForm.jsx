@@ -6,7 +6,7 @@ import { TextField, Button } from "@material-ui/core"
 
 const LoginForm = (props) => {
 
-  const isLoggedIn = props.isLoggedIn;
+  // const isLoggedIn = props.user.isLoggedIn;
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -35,6 +35,12 @@ const LoginForm = (props) => {
     axios.post("/sessions", loginData)
       .then((res) => {
         console.log(res.data)
+        props.setUser({
+          ...props.user,
+          isLoggedIn: true,
+          userInfo: res.data.user
+        })
+        console.log(props.user.userInfo)
         resetForm()
       })
   }

@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function App() {
+  const classes = useStyles();
   const [user, setUser] = useState({
     isLoggedIn: false,
-    user: {}
+    userInfo: {}
   });
-  const classes = useStyles();
 
   return (
     <div className={classes.root} >
@@ -44,7 +44,7 @@ function App() {
             <TopNav />
           <Switch>
             <Route path="/login" exact component={() => <Login user={user} setUser={setUser} />} />
-            <Route path="/signup" exact component={() => <Signup />} />
+            <Route path="/signup" exact component={() => <Signup user={user} setUser={setUser} />} />
 
             <Route path="/" exact component={() => <Home />} />
           </Switch>
