@@ -46,6 +46,7 @@ const NavRight = ({ user, setUser }) => {
       isLoggedIn: false,
       userInfo: {}
     })
+
   }
 
   // const handleClose = () => {
@@ -66,13 +67,33 @@ const NavRight = ({ user, setUser }) => {
         </IconButton>
 
         </ListItem>
-        {["Calculate", "About", "Learn", "Login", "SignUp"].map((text, index) => (
+        {["Calculate", "About", "Learn"].map((text, index) => (
           <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
             <ListItemText>
               {text}
             </ListItemText>
           </ListItem>
         ))}
+        {(user.isLoggedIn && 
+          <ListItem button onClick={handleOptionsMenu && handleLogout} className={classes.mobileDrawer} >
+            <ListItemText>Logout</ListItemText>
+          </ListItem>) || 
+          ["Login", "Signup"].map((text, index) => (
+            <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
+              <ListItemText>
+                {text}
+              </ListItemText>
+            </ListItem>
+        ))}
+        
+
+        {/* {user.isLoggedIn && ["Calculate", "About", "Learn", "Logout"].map((text, index) => (
+          <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
+            <ListItemText>
+              {text}
+            </ListItemText>
+          </ListItem>
+        ))} */}
       </List>
     </>
   )
