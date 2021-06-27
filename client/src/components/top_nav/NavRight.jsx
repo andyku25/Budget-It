@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
+const NavRight = ({ user, setUser }) => {
 
   // const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,6 +39,13 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     !drawerOpen ? setDrawerOpen(true) : setDrawerOpen(false);
     // setAnchorEl(e.currentTarget);
     console.log(drawerOpen);
+  }
+
+  const handleLogout = () => {
+    setUser({
+      isLoggedIn: false,
+      userInfo: {}
+    })
   }
 
   // const handleClose = () => {
@@ -70,7 +77,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     </>
   )
 
-  const navRightRender = isLoggedIn ? (
+  const navRightRender = user.isLoggedIn ? (
     <>
       <Avatar alt="username">AK</Avatar>
       <Button
@@ -78,6 +85,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         to="/login"
         variant="contained"
         color="secondary"
+        onClick={handleLogout}
       >
         Logout
       </Button>
@@ -103,7 +111,7 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     </>
   )
 
-  const navRightMobileRender = isLoggedIn ? (
+  const navRightMobileRender = user.isLoggedIn ? (
     <>
       <IconButton 
         onClick={handleOptionsMenu}

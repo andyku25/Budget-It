@@ -41,7 +41,7 @@ function App() {
     <div className={classes.root} >
       <ThemeProvider theme={theme}>
         <Router>
-            <TopNav />
+            <TopNav user={user} setUser={setUser} />
           <Switch>
             <Route path="/login" exact component={() => <Login user={user} setUser={setUser} />} />
             <Route path="/signup" exact component={() => <Signup user={user} setUser={setUser} />} />
