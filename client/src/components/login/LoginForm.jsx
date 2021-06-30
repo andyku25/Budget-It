@@ -35,13 +35,17 @@ const LoginForm = (props) => {
     axios.post("/sessions", loginData)
       .then((res) => {
         console.log(res.data)
-        props.setUser({
-          ...props.user,
-          isLoggedIn: true,
-          userInfo: res.data.user
-        })
-        console.log(props.user.userInfo)
-        resetForm()
+        if (res.data.status !== 401) {
+          props.setUser({
+            ...props.user,
+            isLoggedIn: true,
+            userInfo: res.data.user
+          })
+          console.log(props.user.userInfo)
+          resetForm()
+        } else {
+          console.log(`Error status ${res.data.status}: ${res.data.message}`)
+        }
       })
   }
 

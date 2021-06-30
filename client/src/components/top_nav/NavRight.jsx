@@ -84,23 +84,16 @@ const NavRight = ({ user, setUser }) => {
                 {text}
               </ListItemText>
             </ListItem>
-        ))}
-        
-
-        {/* {user.isLoggedIn && ["Calculate", "About", "Learn", "Logout"].map((text, index) => (
-          <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
-            <ListItemText>
-              {text}
-            </ListItemText>
-          </ListItem>
-        ))} */}
+          )
+        )}
       </List>
     </>
   )
 
+  // render the desktop view for logged in/out users 
   const navRightRender = user.isLoggedIn ? (
     <>
-      <Avatar alt="username">AK</Avatar>
+      <Avatar alt="username">{user.userInfo.first_name[0].toUpperCase()}</Avatar>
       <Button
         component={ Link }
         to="/login"
@@ -132,6 +125,7 @@ const NavRight = ({ user, setUser }) => {
     </>
   )
 
+  // render the mobile view for logged in/out users 
   const navRightMobileRender = user.isLoggedIn ? (
     <>
       <IconButton 
