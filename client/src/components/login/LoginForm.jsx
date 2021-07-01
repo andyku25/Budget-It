@@ -12,6 +12,7 @@ const LoginForm = (props) => {
     password: ""
   })
 
+  // reset form data to empty form
   const resetForm = () => {
     setLoginData({
       email: "",
@@ -35,7 +36,7 @@ const LoginForm = (props) => {
     axios.post("/sessions", loginData)
       .then((res) => {
         console.log(res.data)
-        if (res.data.status !== 401) {
+        if (res.data.status === "created") {
           props.setUser({
             ...props.user,
             isLoggedIn: true,
@@ -44,7 +45,8 @@ const LoginForm = (props) => {
           console.log(props.user.userInfo)
           resetForm()
         } else {
-          console.log(`Error status ${res.data.status}: ${res.data.message}`)
+          // Todo: Send an alert message for unsuccessful login
+          console.log(`Error status ${res.data.status}: ${res.data.message}`);
         }
       })
   }
