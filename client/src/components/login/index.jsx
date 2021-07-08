@@ -10,7 +10,7 @@ const Login = (props) => {
       <div className="form-login-container">
         <h1>Login</h1>
 
-        <LoginForm user={props.user} setUser={props.setUser} />
+        <LoginForm {...props} />
       </div>
     </>
   )

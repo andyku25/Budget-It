@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { TextField, Button } from "@material-ui/core";
 
 
-const SignupForm = () => {
+const SignupForm = (props) => {
+
+  const history = useHistory();
+
+  if (props.user.isLoggedIn) {
+    console.log(props)
+    history.push("/");
+  }
+
+
   const [newUser, setNewUser] = useState({
     first_name: "",
     last_name: "",

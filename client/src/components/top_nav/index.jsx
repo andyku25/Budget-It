@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   }
 })
 
-const TopNav = ({ user, setUser }) => {
+const TopNav = (props) => {
   const classes = useStyles();
 
   function HideOnScroll({children}) {
@@ -46,7 +46,7 @@ const TopNav = ({ user, setUser }) => {
             <NavCenter />
 
           </Hidden>
-          <NavRight user={user} setUser={setUser} />
+          <NavRight {...props} />
         </Toolbar>
       </AppBar>
 

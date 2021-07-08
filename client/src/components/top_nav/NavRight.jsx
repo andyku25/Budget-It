@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-const NavRight = ({ user, setUser }) => {
+const NavRight = (props) => {
 
   // const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -41,13 +41,13 @@ const NavRight = ({ user, setUser }) => {
     console.log(drawerOpen);
   }
 
-  const handleLogout = () => {
-    setUser({
-      isLoggedIn: false,
-      userInfo: {}
-    })
+  // const handleLogout = () => {
+  //   props.setUser({
+  //     isLoggedIn: false,
+  //     userInfo: {}
+  //   })
 
-  }
+  // }
 
   // const handleClose = () => {
   //   setAnchorEl(null);
@@ -74,8 +74,8 @@ const NavRight = ({ user, setUser }) => {
             </ListItemText>
           </ListItem>
         ))}
-        {(user.isLoggedIn && 
-          <ListItem button onClick={handleOptionsMenu && handleLogout} className={classes.mobileDrawer} >
+        {(props.user.isLoggedIn && 
+          <ListItem button onClick={handleOptionsMenu && props.handleLogout} className={classes.mobileDrawer} >
             <ListItemText>Logout</ListItemText>
           </ListItem>) || 
           ["Login", "Signup"].map((text, index) => (
@@ -91,15 +91,15 @@ const NavRight = ({ user, setUser }) => {
   )
 
   // render the desktop view for logged in/out users 
-  const navRightRender = user.isLoggedIn ? (
+  const navRightRender = props.user.isLoggedIn ? (
     <>
-      <Avatar alt="username">{user.userInfo.first_name[0].toUpperCase()}</Avatar>
+      <Avatar alt="username">{props.user.userInfo.first_name[0].toUpperCase()}</Avatar>
       <Button
         component={ Link }
         to="/login"
         variant="contained"
         color="secondary"
-        onClick={handleLogout}
+        onClick={props.handleLogout}
       >
         Logout
       </Button>
@@ -126,7 +126,7 @@ const NavRight = ({ user, setUser }) => {
   )
 
   // render the mobile view for logged in/out users 
-  const navRightMobileRender = user.isLoggedIn ? (
+  const navRightMobileRender = props.user.isLoggedIn ? (
     <>
       <IconButton 
         onClick={handleOptionsMenu}

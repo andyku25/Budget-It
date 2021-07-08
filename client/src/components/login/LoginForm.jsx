@@ -1,10 +1,17 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { TextField, Button } from "@material-ui/core"
 
 
 const LoginForm = (props) => {
+
+  const history = useHistory();
+
+  if (props.user.isLoggedIn) {
+    history.push("/")
+  }
 
   // const isLoggedIn = props.user.isLoggedIn;
   const [loginData, setLoginData] = useState({

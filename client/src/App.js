@@ -37,11 +37,19 @@ function App() {
     userInfo: {}
   });
 
+  const handleLogout = () => {
+    setUser({
+      isLoggedIn: false,
+      userInfo: {}
+    })
+
+  }
+
   return (
     <div className={classes.root} >
       <ThemeProvider theme={theme}>
         <Router>
-            <TopNav user={user} setUser={setUser} />
+            <TopNav user={user} setUser={setUser} handleLogout={handleLogout} />
           <Switch>
             <Route path="/login" exact component={() => <Login user={user} setUser={setUser} />} />
             <Route path="/signup" exact component={() => <Signup user={user} setUser={setUser} />} />
