@@ -1,6 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
+  wrap_parameters User, include: [:first_name, :last_name, :email, :password, :password_confirmation]
+
   # GET /users
   def index
     @users = User.all
@@ -15,10 +17,13 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users
   def create
+    puts user_params
     @user = User.new(user_params)
+    puts @user
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      session[:user_id] = @user.id
+      render json: @user, status: :created, location: api_v1_user_url(@user)
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -46,6 +51,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
 end

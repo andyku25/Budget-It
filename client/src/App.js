@@ -9,8 +9,9 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import Home from "./components/home"
 import TopNav from "./components/top_nav"
-import MenuLower from "./components/menu_lower"
+// import MenuLower from "./components/menu_lower"
 import Login from "./components/login"
+import Signup from "./components/signup"
 
 const theme = createMuiTheme({
   palette: {
@@ -30,16 +31,28 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const classes = useStyles();
+  const [user, setUser] = useState({
+    isLoggedIn: false,
+    userInfo: {}
+  });
+
+  const handleLogout = () => {
+    setUser({
+      isLoggedIn: false,
+      userInfo: {}
+    })
+
+  }
 
   return (
     <div className={classes.root} >
       <ThemeProvider theme={theme}>
         <Router>
-            <TopNav />
+            <TopNav user={user} setUser={setUser} handleLogout={handleLogout} />
           <Switch>
-            <Route path="/login" exact component={() => <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/login" exact component={() => <Login user={user} setUser={setUser} />} />
+            <Route path="/signup" exact component={() => <Signup user={user} setUser={setUser} />} />
 
             <Route path="/" exact component={() => <Home />} />
           </Switch>

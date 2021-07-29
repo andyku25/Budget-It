@@ -3,14 +3,14 @@ import React from "react"
 import LoginForm from "./LoginForm";
 import "./styles.scss";
 
-const Login = () => {
+const Login = (props) => {
 
   return (
     <>
       <div className="form-login-container">
-        <h1>Budget-It</h1>
+        <h1>Login</h1>
 
-        <LoginForm />
+        <LoginForm {...props} />
       </div>
     </>
   )

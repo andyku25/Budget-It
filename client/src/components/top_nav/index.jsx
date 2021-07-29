@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom"
 
 import { AppBar, Toolbar, Slide, useScrollTrigger, Hidden } from "@material-ui/core";
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   }
 })
 
-const TopNav = ({ isLoggedIn, setIsLoggedIn }) => {
+const TopNav = (props) => {
   const classes = useStyles();
 
   function HideOnScroll({children}) {
@@ -45,7 +46,7 @@ const TopNav = ({ isLoggedIn, setIsLoggedIn }) => {
             <NavCenter />
 
           </Hidden>
-          <NavRight isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <NavRight {...props} />
         </Toolbar>
       </AppBar>
 

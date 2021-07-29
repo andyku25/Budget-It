@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 }))
 
-const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
+const NavRight = (props) => {
 
   // const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -40,6 +40,14 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     // setAnchorEl(e.currentTarget);
     console.log(drawerOpen);
   }
+
+  // const handleLogout = () => {
+  //   props.setUser({
+  //     isLoggedIn: false,
+  //     userInfo: {}
+  //   })
+
+  // }
 
   // const handleClose = () => {
   //   setAnchorEl(null);
@@ -59,25 +67,39 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
         </IconButton>
 
         </ListItem>
-        {["Calculate", "About", "Learn", "Login", "Sign Up"].map((text, index) => (
+        {["Calculate", "About", "Learn"].map((text, index) => (
           <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
             <ListItemText>
               {text}
             </ListItemText>
           </ListItem>
         ))}
+        {(props.user.isLoggedIn && 
+          <ListItem button onClick={handleOptionsMenu && props.handleLogout} className={classes.mobileDrawer} >
+            <ListItemText>Logout</ListItemText>
+          </ListItem>) || 
+          ["Login", "Signup"].map((text, index) => (
+            <ListItem button key={index} component={Link} to={() => `/${text}`} onClick={handleOptionsMenu} className={classes.mobileDrawer} >
+              <ListItemText>
+                {text}
+              </ListItemText>
+            </ListItem>
+          )
+        )}
       </List>
     </>
   )
 
-  const navRightRender = isLoggedIn ? (
+  // render the desktop view for logged in/out users 
+  const navRightRender = props.user.isLoggedIn ? (
     <>
-      <Avatar alt="username">AK</Avatar>
+      <Avatar alt="username">{props.user.userInfo.first_name[0].toUpperCase()}</Avatar>
       <Button
         component={ Link }
         to="/login"
         variant="contained"
         color="secondary"
+        onClick={props.handleLogout}
       >
         Logout
       </Button>
@@ -103,7 +125,8 @@ const NavRight = ({ isLoggedIn, setIsLoggedIn }) => {
     </>
   )
 
-  const navRightMobileRender = isLoggedIn ? (
+  // render the mobile view for logged in/out users 
+  const navRightMobileRender = props.user.isLoggedIn ? (
     <>
       <IconButton 
         onClick={handleOptionsMenu}
